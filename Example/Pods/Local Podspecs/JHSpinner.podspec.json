@@ -1,0 +1,26 @@
+{
+  "name": "JHSpinner",
+  "version": "0.1.0",
+  "summary": "A short description of JHSpinner.",
+  "description": "",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/JHSpinner",
+  "license": "MIT",
+  "authors": {
+    "JHays": "julian@devmode.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/JHSpinner.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "JHSpinner": [
+      "Pod/Assets/*.png",
+      "Pod/Assets/*.xib"
+    ]
+  }
+}

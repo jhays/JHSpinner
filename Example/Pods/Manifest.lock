@@ -1,0 +1,14 @@
+PODS:
+  - JHSpinner (0.1.0)
+
+DEPENDENCIES:
+  - JHSpinner (from `../`)
+
+EXTERNAL SOURCES:
+  JHSpinner:
+    :path: ../
+
+SPEC CHECKSUMS:
+  JHSpinner: 211cc5c89545165f99761ef5b82adf886187b31e
+
+COCOAPODS: 0.39.0

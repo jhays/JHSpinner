@@ -22,7 +22,7 @@ pod "JHSpinner"
 
 ## Author
 
-JHays, julian@devmode.com
+JHays, orbosphere@gmail.com
 
 ## License
 

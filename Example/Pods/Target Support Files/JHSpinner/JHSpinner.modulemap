@@ -1,0 +1,6 @@
+framework module JHSpinner {
+  umbrella header "JHSpinner-umbrella.h"
+
+  export *
+  module * { export * }
+}

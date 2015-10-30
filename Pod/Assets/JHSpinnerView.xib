@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JHSpinnerView" customModule="JHSpinner" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JHSpinnerView" customModule="JHSpinner" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tw8-ow-Zmv">
+                    <rect key="frame" x="281" y="281" width="38" height="38"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4g-dN-nqn">
+                            <rect key="frame" x="6" y="16" width="6" height="6"/>
+                            <animations/>
+                            <color key="backgroundColor" red="0.87918238839999996" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="6" id="bKt-5j-Up9"/>
+                                <constraint firstAttribute="height" constant="6" id="daD-2W-FTq"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Seh-Kg-sss">
+                            <rect key="frame" x="16" y="16" width="6" height="6"/>
+                            <animations/>
+                            <color key="backgroundColor" red="0.87918238839999996" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="6" id="ENE-3h-Jgf"/>
+                                <constraint firstAttribute="width" constant="6" id="Lt4-7G-QdR"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SOd-nu-PJ1">
+                            <rect key="frame" x="26" y="16" width="6" height="6"/>
+                            <animations/>
+                            <color key="backgroundColor" red="0.87918238839999996" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="6" id="3i3-N5-4ch"/>
+                                <constraint firstAttribute="width" constant="6" id="pPc-U6-FGT"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="38" id="2Wf-np-VRv"/>
+                        <constraint firstItem="D4g-dN-nqn" firstAttribute="centerX" secondItem="Seh-Kg-sss" secondAttribute="centerX" constant="-10" id="8oT-Zx-MLv"/>
+                        <constraint firstItem="SOd-nu-PJ1" firstAttribute="centerY" secondItem="Seh-Kg-sss" secondAttribute="centerY" id="Di2-NI-7TA"/>
+                        <constraint firstItem="SOd-nu-PJ1" firstAttribute="centerX" secondItem="Seh-Kg-sss" secondAttribute="centerX" constant="10" id="eq7-R6-iFr"/>
+                        <constraint firstItem="Seh-Kg-sss" firstAttribute="centerY" secondItem="tw8-ow-Zmv" secondAttribute="centerY" id="f9S-NQ-4Bm"/>
+                        <constraint firstAttribute="height" constant="38" id="qXy-pJ-bGc"/>
+                        <constraint firstItem="Seh-Kg-sss" firstAttribute="centerX" secondItem="tw8-ow-Zmv" secondAttribute="centerX" id="ulH-r6-vT5"/>
+                        <constraint firstItem="D4g-dN-nqn" firstAttribute="centerY" secondItem="Seh-Kg-sss" secondAttribute="centerY" id="wkY-KV-sLa"/>
+                    </constraints>
+                </view>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhK-vh-XAt">
+                    <rect key="frame" x="279" y="327" width="42" height="21"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="42" id="Boa-ds-oe8"/>
+                        <constraint firstAttribute="height" constant="21" id="cy5-ky-T8W"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="OhK-vh-XAt" firstAttribute="centerX" secondItem="tw8-ow-Zmv" secondAttribute="centerX" id="EPz-ZQ-t0h"/>
+                <constraint firstItem="OhK-vh-XAt" firstAttribute="top" secondItem="tw8-ow-Zmv" secondAttribute="bottom" constant="8" id="WAY-5S-SKq"/>
+                <constraint firstItem="tw8-ow-Zmv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="WVV-gi-qlK"/>
+                <constraint firstItem="tw8-ow-Zmv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="orv-V9-ILt"/>
+            </constraints>
+            <connections>
+                <outlet property="dot1" destination="D4g-dN-nqn" id="CjM-mb-YgZ"/>
+                <outlet property="dot1CenterX" destination="8oT-Zx-MLv" id="90t-xN-Hyf"/>
+                <outlet property="dot1CenterY" destination="wkY-KV-sLa" id="bnb-e4-jes"/>
+                <outlet property="dot1Height" destination="daD-2W-FTq" id="Hsb-Nn-kOv"/>
+                <outlet property="dot1Width" destination="bKt-5j-Up9" id="SbD-jm-b2Q"/>
+                <outlet property="dot2" destination="Seh-Kg-sss" id="UHh-Bd-p9C"/>
+                <outlet property="dot2CenterX" destination="ulH-r6-vT5" id="LIB-6p-din"/>
+                <outlet property="dot2CenterY" destination="f9S-NQ-4Bm" id="DOk-RU-NNm"/>
+                <outlet property="dot2Height" destination="ENE-3h-Jgf" id="pyV-oM-2Iw"/>
+                <outlet property="dot2Width" destination="Lt4-7G-QdR" id="cCV-IW-A0H"/>
+                <outlet property="dot3" destination="SOd-nu-PJ1" id="dnL-mf-fwh"/>
+                <outlet property="dot3CenterX" destination="eq7-R6-iFr" id="3vR-dQ-P7d"/>
+                <outlet property="dot3CenterY" destination="Di2-NI-7TA" id="9qs-Wh-e2d"/>
+                <outlet property="dot3Height" destination="3i3-N5-4ch" id="Oz0-Gw-Jgh"/>
+                <outlet property="dot3Width" destination="pPc-U6-FGT" id="X2c-Xf-EqQ"/>
+                <outlet property="messageHeight" destination="cy5-ky-T8W" id="D2N-NJ-bu8"/>
+                <outlet property="messageLabel" destination="OhK-vh-XAt" id="VaW-vE-igL"/>
+                <outlet property="messageTop" destination="WAY-5S-SKq" id="Y19-jk-YVy"/>
+                <outlet property="messageWidth" destination="Boa-ds-oe8" id="LJN-iE-Dtf"/>
+                <outlet property="spinnerContainerView" destination="tw8-ow-Zmv" id="na8-Qp-iah"/>
+            </connections>
+        </view>
+    </objects>
+</document>
