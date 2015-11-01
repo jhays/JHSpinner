@@ -132,6 +132,8 @@ public class JHSpinnerView: UIView {
             spinner.layoutIfNeeded()
         }
         
+        view.addSubview(spinner)
+        
         return spinner
     }
 
