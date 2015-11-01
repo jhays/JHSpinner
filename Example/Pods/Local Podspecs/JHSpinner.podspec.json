@@ -1,17 +1,22 @@
 {
   "name": "JHSpinner",
   "version": "0.1.0",
-  "summary": "A short description of JHSpinner.",
-  "description": "",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/JHSpinner",
+  "summary": "A unique animated loading spinner for iOS",
+  "description": "A unique animated loading spinner UIView subclass for iOS. Includes several customization options to change the overlay, colors, text, and animation speed. Also includes a determinate spinner for progress-bar style loading or file upload.",
+  "homepage": "https://github.com/jhays/JHSpinner",
+  "screenshots": [
+    "https://raw.githubusercontent.com/jhays/JHSpinner/master/RoundedSquare.gif",
+    "https://raw.githubusercontent.com/jhays/JHSpinner/master/Determinite.gif"
+  ],
   "license": "MIT",
   "authors": {
-    "JHays": "julian@devmode.com"
+    "JHays": "orbosphere@gmail.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/JHSpinner.git",
+    "git": "https://github.com/jhays/JHSpinner.git",
     "tag": "0.1.0"
   },
+  "social_media_url": "https://twitter.com/orbosphere",
   "platforms": {
     "ios": "8.0"
   },
@@ -22,5 +27,6 @@
       "Pod/Assets/*.png",
       "Pod/Assets/*.xib"
     ]
-  }
+  },
+  "frameworks": "UIKit"
 }
