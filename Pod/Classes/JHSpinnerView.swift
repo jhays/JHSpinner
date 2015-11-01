@@ -38,6 +38,15 @@ public class JHSpinnerView: UIView {
     private var maxDot = CGFloat(26)
     private var minDot = CGFloat(6)
     private var margin = CGFloat(4)
+    private var circle: CAShapeLayer?
+    public var progress = CGFloat(0) {
+        didSet{
+            if let circle = circle, let color = dot1.backgroundColor {
+                circle.removeFromSuperlayer()
+                self.addCircleBorder(color, progress: progress)
+            }
+        }
+    }
     
     public class func showOnView(view:UIView, spinnerColor:UIColor? = nil, overlay:JHSpinnerOverlay = .FullScreen, overlayColor:UIColor? = nil, fullCycleTime:Double = 4.0, text:String? = nil, textColor:UIColor? = nil) -> JHSpinnerView {
         
@@ -198,8 +207,98 @@ public class JHSpinnerView: UIView {
         spinner.bringSubviewToFront(spinner.messageLabel)
         spinner.layoutIfNeeded()
         
+        return spinner
+    }
+    
+    public class func showDeterminiteSpinnerOnView(view:UIView, spinnerColor:UIColor? = nil, backgroundColor:UIColor? = nil, fullCycleTime:Double = 4.0, initialProgress:CGFloat = 0.0) -> JHSpinnerView {
+    
+        let defaultWhite = UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 250.0/255.0, alpha: 1.0)
+        let defaultBlack = UIColor(red: 40.0/255.0, green: 40.0/255.0, blue: 40.0/255.0, alpha: 1.0)
+        
+        var mySpinnerColor = defaultWhite
+        if let color = spinnerColor {
+            mySpinnerColor = color
+        }else {
+            if let bgColor = view.backgroundColor {
+                if bgColor.isLight() {
+                    mySpinnerColor = defaultBlack
+                }else {
+                    mySpinnerColor = defaultWhite
+                }
+            }
+        }
+        
+        var myOverlayColor = defaultBlack
+        
+        if let overlayColor = backgroundColor {
+            myOverlayColor = overlayColor
+        }else {
+            if let bgColor = view.backgroundColor {
+                if bgColor.isLight() {
+                    myOverlayColor = defaultWhite.colorWithAlphaComponent(0.5)
+                }else {
+                    myOverlayColor = defaultBlack.colorWithAlphaComponent(0.5)
+                }
+            }
+        }
+        
+        let spinner = JHSpinnerView.instanceFromNib()
+        spinner.frame = view.bounds
+        spinner.animationSpeed = fullCycleTime/28.34 //MAGIC NUMBER
+        spinner.dot1.backgroundColor = mySpinnerColor
+        spinner.dot2.backgroundColor = mySpinnerColor
+        spinner.dot3.backgroundColor = mySpinnerColor
+        
+        spinner.overlayView.backgroundColor = myOverlayColor
+        
+        let size = 75
+
+        spinner.overlayView.frame = CGRect(x: Int(spinner.center.x) - (size/2), y: Int(spinner.center.y) - (size/2), width: size, height: size)
+        spinner.overlayView.layer.cornerRadius = CGFloat(size/2)
+
+        spinner.addSubview(spinner.overlayView)
+        spinner.bringSubviewToFront(spinner.spinnerContainerView)
+        
+        spinner.messageLabel.hidden = true
+        
+       spinner.addCircleBorder(mySpinnerColor, progress: 1.0)
         
         return spinner
+    }
+    
+    public func addCircleBorder(color:UIColor, progress:CGFloat) {
+        let radius = self.overlayView.frame.width/2
+        // Create the circle layer
+        self.circle = CAShapeLayer()
+        let borderWidth = CGFloat(2)
+        
+        if let circle = self.circle {
+            
+            // Set the center of the circle to be the center of the view
+            let center = CGPointMake(CGRectGetMidX(self.overlayView.frame) - radius, CGRectGetMidY(self.overlayView.frame) - radius)
+            circle.position = CGPointMake((self.overlayView.frame.width - borderWidth)/2, (self.overlayView.frame.height - borderWidth)/2)
+            
+            func rad(degrees:CGFloat) -> CGFloat {
+                return (degrees * CGFloat(M_PI))/180
+            }
+            
+            let clockwise: Bool = true
+            
+            // `clockwise` tells the circle whether to animate in a clockwise or anti clockwise direction
+            circle.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: -rad(90), endAngle: rad(360-90), clockwise: clockwise).CGPath
+            
+            // Configure the circle
+            circle.fillColor = UIColor.clearColor().CGColor
+            circle.strokeColor = color.CGColor
+            circle.lineWidth = borderWidth
+            
+            // When it gets to the end of its animation, leave it at 100% stroke filled
+            circle.strokeEnd = progress
+            
+            // Add the circle to the parent layer
+            self.layer.addSublayer(circle)
+            
+        }
     }
     
     public class func instanceFromNib() -> JHSpinnerView {
