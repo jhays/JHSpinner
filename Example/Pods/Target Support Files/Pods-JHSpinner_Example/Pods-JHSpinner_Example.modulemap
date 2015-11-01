@@ -1,6 +1,0 @@
-framework module Pods_JHSpinner_Example {
-  umbrella header "Pods-JHSpinner_Example-umbrella.h"
-
-  export *
-  module * { export * }
-}
