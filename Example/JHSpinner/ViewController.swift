@@ -28,6 +28,11 @@ class ViewController: UIViewController {
         
         let spinner = JHSpinnerView.showOnView(view, spinnerColor:UIColor.redColor(), overlay:.RoundedSquare, overlayColor:UIColor.blackColor().colorWithAlphaComponent(0.6), fullCycleTime:4.0, text:"Loading")
 
+        //let spinner = JHSpinnerView.showDeterminiteSpinnerOnView(view)
+        
+        delay(6) { () -> () in
+            spinner.dismiss()
+        }
     }
     
     

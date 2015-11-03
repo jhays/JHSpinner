@@ -209,6 +209,8 @@ public class JHSpinnerView: UIView {
         spinner.bringSubviewToFront(spinner.messageLabel)
         spinner.layoutIfNeeded()
         
+        view.addSubview(spinner)
+        
         return spinner
     }
     
@@ -263,7 +265,9 @@ public class JHSpinnerView: UIView {
         
         spinner.messageLabel.hidden = true
         
-       spinner.addCircleBorder(mySpinnerColor, progress: 1.0)
+        spinner.addCircleBorder(mySpinnerColor, progress: 1.0)
+        
+        view.addSubview(spinner)
         
         return spinner
     }
@@ -328,21 +332,10 @@ public class JHSpinnerView: UIView {
     }
     
     public func dismiss() {
-        
         UIView.animateWithDuration(self.animationSpeed, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
-            self.dot1Width.constant = 0
-            self.dot1Height.constant = 0
-            self.dot2Width.constant = 0
-            self.dot2Height.constant = 0
-            self.dot3Width.constant = 0
-            self.dot3Height.constant = 0
-            
+            self.alpha = 0.0
             }) { (success) -> Void in
-                UIView.animateWithDuration(self.animationSpeed, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
-                    self.alpha = 0.0
-                    }) { (success) -> Void in
-                        self.removeFromSuperview()
-                }
+                self.removeFromSuperview()
         }
     }
     
