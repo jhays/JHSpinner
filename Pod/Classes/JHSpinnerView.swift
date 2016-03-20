@@ -32,6 +32,7 @@ public class JHSpinnerView: UIView {
     @IBOutlet weak var messageHeight:NSLayoutConstraint!
     
     //private var nibView:JHSpinnerView!
+    private var overlay: JHSpinnerOverlay = .FullScreen
     private var overlayView = UIView()
     private var animating = false
     private var animationSpeed = 0.14
@@ -82,6 +83,7 @@ public class JHSpinnerView: UIView {
         
         let spinner = JHSpinnerView.instanceFromNib()
         spinner.frame = view.bounds
+        spinner.overlay = overlay
         spinner.animationSpeed = fullCycleTime/28.34 //MAGIC NUMBER
         spinner.dot1.backgroundColor = mySpinnerColor
         spinner.dot2.backgroundColor = mySpinnerColor
@@ -89,26 +91,7 @@ public class JHSpinnerView: UIView {
         
         spinner.overlayView.backgroundColor = myOverlayColor
         
-        let size = 120
-        switch overlay {
-        case .FullScreen:
-            
-            spinner.overlayView.frame = spinner.bounds
-            
-        case .Square:
-            spinner.overlayView.frame = CGRect(x: Int(spinner.center.x) - (size/2), y: Int(spinner.center.y) - (size/2), width: size, height: size)
-        case .RoundedSquare:
-            spinner.overlayView.frame = CGRect(x: Int(spinner.center.x) - (size/2), y: Int(spinner.center.y) - (size/2), width: size, height: size)
-            spinner.overlayView.layer.cornerRadius = 8.0
-        case .Circular:
-            spinner.overlayView.frame = CGRect(x: Int(spinner.center.x) - (size/2), y: Int(spinner.center.y) - (size/2), width: size, height: size)
-            spinner.overlayView.layer.cornerRadius = CGFloat(size/2)
-        case .Custom(let size, let cornerRadius):
-            spinner.overlayView.frame = CGRect(x: Int(spinner.center.x) - Int(size.width/2), y: Int(spinner.center.y) - Int(size.height/2), width: Int(size.width), height: Int(size.height))
-            if cornerRadius > 0 {
-                spinner.overlayView.layer.cornerRadius = cornerRadius
-            }
-        }
+        spinner.layoutOverlayView()
         
         spinner.addSubview(spinner.overlayView)
         spinner.bringSubviewToFront(spinner.spinnerContainerView)
@@ -136,7 +119,7 @@ public class JHSpinnerView: UIView {
         
         return spinner
     }
-
+    
     public class func showOnView(view:UIView, spinnerColor:UIColor? = nil, overlay:JHSpinnerOverlay = .FullScreen, overlayColor:UIColor? = nil, fullCycleTime:Double = 4.0, attributedText:NSAttributedString) -> JHSpinnerView {
         
         let defaultWhite = UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 250.0/255.0, alpha: 1.0)
@@ -171,6 +154,7 @@ public class JHSpinnerView: UIView {
         
         let spinner = JHSpinnerView.instanceFromNib()
         spinner.frame = view.bounds
+        spinner.overlay = overlay
         spinner.animationSpeed = fullCycleTime/28.34 //MAGIC NUMBER
         spinner.dot1.backgroundColor = mySpinnerColor
         spinner.dot2.backgroundColor = mySpinnerColor
@@ -178,11 +162,11 @@ public class JHSpinnerView: UIView {
         
         spinner.overlayView.backgroundColor = myOverlayColor
         
-        layoutOverlayView()
+        spinner.layoutOverlayView()
         
         spinner.addSubview(spinner.overlayView)
         spinner.bringSubviewToFront(spinner.spinnerContainerView)
-
+        
         spinner.messageLabel.attributedText = attributedText
         spinner.messageWidth.constant = spinner.overlayView.frame.width - 16
         spinner.messageHeight.constant = (spinner.overlayView.frame.height/2) - (spinner.spinnerContainerView.frame.height/2) - spinner.messageTop.constant
@@ -196,7 +180,7 @@ public class JHSpinnerView: UIView {
     }
     
     public class func showDeterminiteSpinnerOnView(view:UIView, spinnerColor:UIColor? = nil, backgroundColor:UIColor? = nil, fullCycleTime:Double = 4.0, initialProgress:CGFloat = 0.0) -> JHSpinnerView {
-    
+        
         let defaultWhite = UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 250.0/255.0, alpha: 1.0)
         let defaultBlack = UIColor(red: 40.0/255.0, green: 40.0/255.0, blue: 40.0/255.0, alpha: 1.0)
         
@@ -237,10 +221,10 @@ public class JHSpinnerView: UIView {
         spinner.overlayView.backgroundColor = myOverlayColor
         
         let size = 75
-
+        
         spinner.overlayView.frame = CGRect(x: Int(spinner.center.x) - (size/2), y: Int(spinner.center.y) - (size/2), width: size, height: size)
         spinner.overlayView.layer.cornerRadius = CGFloat(size/2)
-
+        
         spinner.addSubview(spinner.overlayView)
         spinner.bringSubviewToFront(spinner.spinnerContainerView)
         
@@ -293,20 +277,20 @@ public class JHSpinnerView: UIView {
         switch overlay {
         case .FullScreen:
             
-            spinner.overlayView.frame = spinner.bounds
+            overlayView.frame = bounds
             
         case .Square:
-            spinner.overlayView.frame = CGRect(x: Int(spinner.center.x) - (size/2), y: Int(spinner.center.y) - (size/2), width: size, height: size)
+            overlayView.frame = CGRect(x: Int(center.x) - (size/2), y: Int(center.y) - (size/2), width: size, height: size)
         case .RoundedSquare:
-            spinner.overlayView.frame = CGRect(x: Int(spinner.center.x) - (size/2), y: Int(spinner.center.y) - (size/2), width: size, height: size)
-            spinner.overlayView.layer.cornerRadius = 8.0
+            overlayView.frame = CGRect(x: Int(center.x) - (size/2), y: Int(center.y) - (size/2), width: size, height: size)
+            overlayView.layer.cornerRadius = 8.0
         case .Circular:
-            spinner.overlayView.frame = CGRect(x: Int(spinner.center.x) - (size/2), y: Int(spinner.center.y) - (size/2), width: size, height: size)
-            spinner.overlayView.layer.cornerRadius = CGFloat(size/2)
+            overlayView.frame = CGRect(x: Int(center.x) - (size/2), y: Int(center.y) - (size/2), width: size, height: size)
+            overlayView.layer.cornerRadius = CGFloat(size/2)
         case .Custom(let size, let cornerRadius):
-            spinner.overlayView.frame = CGRect(x: Int(spinner.center.x) - Int(size.width/2), y: Int(spinner.center.y) - Int(size.height/2), width: Int(size.width), height: Int(size.height))
+            overlayView.frame = CGRect(x: Int(center.x) - Int(size.width/2), y: Int(center.y) - Int(size.height/2), width: Int(size.width), height: Int(size.height))
             if cornerRadius > 0 {
-                spinner.overlayView.layer.cornerRadius = cornerRadius
+                overlayView.layer.cornerRadius = cornerRadius
             }
         }
     }
@@ -315,7 +299,7 @@ public class JHSpinnerView: UIView {
         let bundle = NSBundle(forClass:JHSpinnerView.self)
         return UINib(nibName: "JHSpinner.bundle/JHSpinnerView", bundle: bundle).instantiateWithOwner(nil, options: nil)[0] as! JHSpinnerView
     }
-
+    
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
