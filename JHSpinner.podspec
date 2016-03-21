@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Pod/Classes/**/*'
   s.resource_bundles = {
-    'JHSpinner' => ['Pod/Assets/*.png','Pod/Assets/*.xib']
+    'JHSpinner' => ['Pod/Assets/*.xib']
   }
   s.frameworks = 'UIKit'
 end
