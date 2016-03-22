@@ -309,7 +309,7 @@ public class JHSpinnerView: UIView {
     
     public class func instanceFromNib() -> JHSpinnerView {
         let bundle = NSBundle(forClass:JHSpinnerView.self)
-        return UINib(nibName: "JHSpinner.bundle/JHSpinnerView", bundle: bundle).instantiateWithOwner(nil, options: nil)[0] as! JHSpinnerView
+        return UINib(nibName: "JHSpinnerView", bundle: bundle).instantiateWithOwner(nil, options: nil)[0] as! JHSpinnerView
     }
 
     required public init?(coder aDecoder: NSCoder) {

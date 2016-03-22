@@ -17,8 +17,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'JHSpinner' => ['Pod/Assets/*.xib']
-  }
+  s.resource = 'Pod/Assets/JHSpinnerView.xib'
+
   s.frameworks = 'UIKit'
 end
