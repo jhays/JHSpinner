@@ -1,10 +1,10 @@
 import UIKit
 
 public enum JHSpinnerOverlay {
-    case FullScreen, Circular, Square, RoundedSquare, Custom(CGSize, CGFloat)
+    case fullScreen, circular, square, roundedSquare, custom(CGSize, CGFloat)
 }
 
-public class JHSpinnerView: UIView {
+open class JHSpinnerView: UIView {
     
     @IBOutlet weak var spinnerContainerView: UIView!
     
@@ -32,15 +32,15 @@ public class JHSpinnerView: UIView {
     @IBOutlet weak var messageHeight:NSLayoutConstraint!
     
     //private var nibView:JHSpinnerView!
-    private var overlay: JHSpinnerOverlay = .FullScreen
-    private var overlayView = UIView()
-    private var animating = false
-    private var animationSpeed = 0.14
-    private var maxDot = CGFloat(26)
-    private var minDot = CGFloat(6)
-    private var margin = CGFloat(4)
-    private var circle: CAShapeLayer?
-    public var progress = CGFloat(0) {
+    fileprivate var overlay: JHSpinnerOverlay = .fullScreen
+    fileprivate var overlayView = UIView()
+    fileprivate var animating = false
+    fileprivate var animationSpeed = 0.14
+    fileprivate var maxDot = CGFloat(26)
+    fileprivate var minDot = CGFloat(6)
+    fileprivate var margin = CGFloat(4)
+    fileprivate var circle: CAShapeLayer?
+    open var progress = CGFloat(0) {
         didSet{
             if let circle = circle, let color = dot1.backgroundColor {
                 circle.removeFromSuperlayer()
@@ -49,7 +49,7 @@ public class JHSpinnerView: UIView {
         }
     }
     
-    public class func showOnView(view:UIView, spinnerColor:UIColor? = nil, overlay:JHSpinnerOverlay = .FullScreen, overlayColor:UIColor? = nil, fullCycleTime:Double = 4.0, text:String? = nil, textColor:UIColor? = nil) -> JHSpinnerView {
+    open class func showOnView(_ view:UIView, spinnerColor:UIColor? = nil, overlay:JHSpinnerOverlay = .fullScreen, overlayColor:UIColor? = nil, fullCycleTime:Double = 4.0, text:String? = nil, textColor:UIColor? = nil) -> JHSpinnerView {
         
         let defaultWhite = UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 250.0/255.0, alpha: 1.0)
         let defaultBlack = UIColor(red: 40.0/255.0, green: 40.0/255.0, blue: 40.0/255.0, alpha: 1.0)
@@ -74,9 +74,9 @@ public class JHSpinnerView: UIView {
         }else {
             if let bgColor = view.backgroundColor {
                 if bgColor.isLight() {
-                    myOverlayColor = defaultWhite.colorWithAlphaComponent(0.5)
+                    myOverlayColor = defaultWhite.withAlphaComponent(0.5)
                 }else {
-                    myOverlayColor = defaultBlack.colorWithAlphaComponent(0.5)
+                    myOverlayColor = defaultBlack.withAlphaComponent(0.5)
                 }
             }
         }
@@ -94,7 +94,7 @@ public class JHSpinnerView: UIView {
         spinner.layoutOverlayView()
         
         spinner.addSubview(spinner.overlayView)
-        spinner.bringSubviewToFront(spinner.spinnerContainerView)
+        spinner.bringSubview(toFront: spinner.spinnerContainerView)
         
         if let text = text {
             spinner.messageLabel.text = text
@@ -110,8 +110,8 @@ public class JHSpinnerView: UIView {
             }
             spinner.messageWidth.constant = spinner.overlayView.frame.width - 16
             spinner.messageHeight.constant = (spinner.overlayView.frame.height/2) - (spinner.spinnerContainerView.frame.height/2) - spinner.messageTop.constant
-            spinner.messageLabel.hidden = false
-            spinner.bringSubviewToFront(spinner.messageLabel)
+            spinner.messageLabel.isHidden = false
+            spinner.bringSubview(toFront: spinner.messageLabel)
             spinner.layoutIfNeeded()
         }
         
@@ -120,7 +120,7 @@ public class JHSpinnerView: UIView {
         return spinner
     }
     
-    public class func showOnView(view:UIView, spinnerColor:UIColor? = nil, overlay:JHSpinnerOverlay = .FullScreen, overlayColor:UIColor? = nil, fullCycleTime:Double = 4.0, attributedText:NSAttributedString) -> JHSpinnerView {
+    open class func showOnView(_ view:UIView, spinnerColor:UIColor? = nil, overlay:JHSpinnerOverlay = .fullScreen, overlayColor:UIColor? = nil, fullCycleTime:Double = 4.0, attributedText:NSAttributedString) -> JHSpinnerView {
         
         let defaultWhite = UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 250.0/255.0, alpha: 1.0)
         let defaultBlack = UIColor(red: 40.0/255.0, green: 40.0/255.0, blue: 40.0/255.0, alpha: 1.0)
@@ -145,9 +145,9 @@ public class JHSpinnerView: UIView {
         }else {
             if let bgColor = view.backgroundColor {
                 if bgColor.isLight() {
-                    myOverlayColor = defaultWhite.colorWithAlphaComponent(0.5)
+                    myOverlayColor = defaultWhite.withAlphaComponent(0.5)
                 }else {
-                    myOverlayColor = defaultBlack.colorWithAlphaComponent(0.5)
+                    myOverlayColor = defaultBlack.withAlphaComponent(0.5)
                 }
             }
         }
@@ -165,13 +165,13 @@ public class JHSpinnerView: UIView {
         spinner.layoutOverlayView()
         
         spinner.addSubview(spinner.overlayView)
-        spinner.bringSubviewToFront(spinner.spinnerContainerView)
+        spinner.bringSubview(toFront: spinner.spinnerContainerView)
         
         spinner.messageLabel.attributedText = attributedText
         spinner.messageWidth.constant = spinner.overlayView.frame.width - 16
         spinner.messageHeight.constant = (spinner.overlayView.frame.height/2) - (spinner.spinnerContainerView.frame.height/2) - spinner.messageTop.constant
-        spinner.messageLabel.hidden = false
-        spinner.bringSubviewToFront(spinner.messageLabel)
+        spinner.messageLabel.isHidden = false
+        spinner.bringSubview(toFront: spinner.messageLabel)
         spinner.layoutIfNeeded()
         
         view.addSubview(spinner)
@@ -179,7 +179,7 @@ public class JHSpinnerView: UIView {
         return spinner
     }
     
-    public class func showDeterminiteSpinnerOnView(view:UIView, spinnerColor:UIColor? = nil, backgroundColor:UIColor? = nil, fullCycleTime:Double = 4.0, initialProgress:CGFloat = 0.0) -> JHSpinnerView {
+    open class func showDeterminiteSpinnerOnView(_ view:UIView, spinnerColor:UIColor? = nil, backgroundColor:UIColor? = nil, fullCycleTime:Double = 4.0, initialProgress:CGFloat = 0.0) -> JHSpinnerView {
         
         let defaultWhite = UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 250.0/255.0, alpha: 1.0)
         let defaultBlack = UIColor(red: 40.0/255.0, green: 40.0/255.0, blue: 40.0/255.0, alpha: 1.0)
@@ -204,9 +204,9 @@ public class JHSpinnerView: UIView {
         }else {
             if let bgColor = view.backgroundColor {
                 if bgColor.isLight() {
-                    myOverlayColor = defaultWhite.colorWithAlphaComponent(0.5)
+                    myOverlayColor = defaultWhite.withAlphaComponent(0.5)
                 }else {
-                    myOverlayColor = defaultBlack.colorWithAlphaComponent(0.5)
+                    myOverlayColor = defaultBlack.withAlphaComponent(0.5)
                 }
             }
         }
@@ -226,9 +226,9 @@ public class JHSpinnerView: UIView {
         spinner.overlayView.layer.cornerRadius = CGFloat(size/2)
         
         spinner.addSubview(spinner.overlayView)
-        spinner.bringSubviewToFront(spinner.spinnerContainerView)
+        spinner.bringSubview(toFront: spinner.spinnerContainerView)
         
-        spinner.messageLabel.hidden = true
+        spinner.messageLabel.isHidden = true
         
         spinner.addCircleBorder(mySpinnerColor, progress: 1.0)
         
@@ -237,7 +237,7 @@ public class JHSpinnerView: UIView {
         return spinner
     }
     
-    public func addCircleBorder(color:UIColor, progress:CGFloat) {
+    open func addCircleBorder(_ color:UIColor, progress:CGFloat) {
         let radius = self.overlayView.frame.width/2
         // Create the circle layer
         self.circle = CAShapeLayer()
@@ -246,21 +246,21 @@ public class JHSpinnerView: UIView {
         if let circle = self.circle {
             
             // Set the center of the circle to be the center of the view
-            let center = CGPointMake(CGRectGetMidX(self.overlayView.frame) - radius, CGRectGetMidY(self.overlayView.frame) - radius)
-            circle.position = CGPointMake((self.overlayView.frame.width - borderWidth)/2, (self.overlayView.frame.height - borderWidth)/2)
+            let center = CGPoint(x: self.overlayView.frame.midX - radius, y: self.overlayView.frame.midY - radius)
+            circle.position = CGPoint(x: (self.overlayView.frame.width - borderWidth)/2, y: (self.overlayView.frame.height - borderWidth)/2)
             
-            func rad(degrees:CGFloat) -> CGFloat {
+            func rad(_ degrees:CGFloat) -> CGFloat {
                 return (degrees * CGFloat(M_PI))/180
             }
             
             let clockwise: Bool = true
             
             // `clockwise` tells the circle whether to animate in a clockwise or anti clockwise direction
-            circle.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: -rad(90), endAngle: rad(360-90), clockwise: clockwise).CGPath
+            circle.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: -rad(90), endAngle: rad(360-90), clockwise: clockwise).cgPath
             
             // Configure the circle
-            circle.fillColor = UIColor.clearColor().CGColor
-            circle.strokeColor = color.CGColor
+            circle.fillColor = UIColor.clear.cgColor
+            circle.strokeColor = color.cgColor
             circle.lineWidth = borderWidth
             
             // When it gets to the end of its animation, leave it at 100% stroke filled
@@ -272,22 +272,22 @@ public class JHSpinnerView: UIView {
         }
     }
     
-    private func layoutOverlayView() {
+    fileprivate func layoutOverlayView() {
         let size = 120
         switch overlay {
-        case .FullScreen:
+        case .fullScreen:
             
             overlayView.frame = bounds
             
-        case .Square:
+        case .square:
             overlayView.frame = CGRect(x: Int(center.x) - (size/2), y: Int(center.y) - (size/2), width: size, height: size)
-        case .RoundedSquare:
+        case .roundedSquare:
             overlayView.frame = CGRect(x: Int(center.x) - (size/2), y: Int(center.y) - (size/2), width: size, height: size)
             overlayView.layer.cornerRadius = 8.0
-        case .Circular:
+        case .circular:
             overlayView.frame = CGRect(x: Int(center.x) - (size/2), y: Int(center.y) - (size/2), width: size, height: size)
             overlayView.layer.cornerRadius = CGFloat(size/2)
-        case .Custom(let size, let cornerRadius):
+        case .custom(let size, let cornerRadius):
             overlayView.frame = CGRect(x: Int(center.x) - Int(size.width/2), y: Int(center.y) - Int(size.height/2), width: Int(size.width), height: Int(size.height))
             if cornerRadius > 0 {
                 overlayView.layer.cornerRadius = cornerRadius
@@ -295,16 +295,16 @@ public class JHSpinnerView: UIView {
         }
     }
     
-    public class func instanceFromNib() -> JHSpinnerView {
-        let bundle = NSBundle(forClass:JHSpinnerView.self)
-        return UINib(nibName: "JHSpinnerView", bundle: bundle).instantiateWithOwner(nil, options: nil)[0] as! JHSpinnerView
+    open class func instanceFromNib() -> JHSpinnerView {
+        let bundle = Bundle(for:JHSpinnerView.self)
+        return UINib(nibName: "JHSpinnerView", bundle: bundle).instantiate(withOwner: nil, options: nil)[0] as! JHSpinnerView
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
         dot1.layer.cornerRadius = minDot/2
         dot2.layer.cornerRadius = minDot/2
@@ -312,7 +312,7 @@ public class JHSpinnerView: UIView {
         
     }
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         
         layoutOverlayView()
@@ -324,24 +324,24 @@ public class JHSpinnerView: UIView {
         }
     }
     
-    public func dismiss() {
-        UIView.animateWithDuration(self.animationSpeed, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+    open func dismiss() {
+        UIView.animate(withDuration: self.animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
             self.alpha = 0.0
             }) { (success) -> Void in
                 self.removeFromSuperview()
         }
     }
     
-    public func animate() {
+    open func animate() {
         if dot1Height != nil {
             animateHeightLeftToRight(dot1Height)
         }
     }
     
     
-    public func animateHeightLeftToRight(constraint:NSLayoutConstraint, max:Bool = true) {
+    open func animateHeightLeftToRight(_ constraint:NSLayoutConstraint, max:Bool = true) {
         if self.superview != nil {
-            UIView.animateWithDuration(animationSpeed, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
                 
                 if max {
                     constraint.constant = self.maxDot
@@ -372,9 +372,9 @@ public class JHSpinnerView: UIView {
         }
     }
     
-    public func positionTopToBottom(constraint:NSLayoutConstraint) {
+    open func positionTopToBottom(_ constraint:NSLayoutConstraint) {
         if self.superview != nil {
-            UIView.animateWithDuration(animationSpeed, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
                 
                 if constraint == self.dot1CenterX {
                     self.dot1CenterX.constant = 0
@@ -394,9 +394,9 @@ public class JHSpinnerView: UIView {
         }
     }
     
-    public func animateWidthTopToBottom(constraint:NSLayoutConstraint, max:Bool = true) {
+    open func animateWidthTopToBottom(_ constraint:NSLayoutConstraint, max:Bool = true) {
         if self.superview != nil {
-            UIView.animateWithDuration(animationSpeed, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
                 
                 if max {
                     constraint.constant = self.maxDot
@@ -427,9 +427,9 @@ public class JHSpinnerView: UIView {
         }
     }
     
-    public func positionRightToLeft(constraint:NSLayoutConstraint) {
+    open func positionRightToLeft(_ constraint:NSLayoutConstraint) {
         if self.superview != nil {
-            UIView.animateWithDuration(animationSpeed, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
                 
                 if constraint == self.dot1CenterX {
                     self.dot1CenterX.constant = self.minDot + self.margin
@@ -449,9 +449,9 @@ public class JHSpinnerView: UIView {
         }
     }
     
-    public func animateHeightRightToLeft(constraint:NSLayoutConstraint, max:Bool = true) {
+    open func animateHeightRightToLeft(_ constraint:NSLayoutConstraint, max:Bool = true) {
         if self.superview != nil {
-            UIView.animateWithDuration(animationSpeed, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
                 
                 if max {
                     constraint.constant = self.maxDot
@@ -482,9 +482,9 @@ public class JHSpinnerView: UIView {
         }
     }
     
-    public func positionBottomToTop(constraint:NSLayoutConstraint) {
+    open func positionBottomToTop(_ constraint:NSLayoutConstraint) {
         if self.superview != nil {
-            UIView.animateWithDuration(animationSpeed, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
                 
                 if constraint == self.dot1CenterX {
                     self.dot1CenterX.constant = 0
@@ -503,9 +503,9 @@ public class JHSpinnerView: UIView {
         }
     }
     
-    public func animateWidthBottomToTop(constraint:NSLayoutConstraint, max:Bool = true) {
+    open func animateWidthBottomToTop(_ constraint:NSLayoutConstraint, max:Bool = true) {
         if self.superview != nil {
-            UIView.animateWithDuration(animationSpeed, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
                 
                 if max {
                     constraint.constant = self.maxDot
@@ -536,9 +536,9 @@ public class JHSpinnerView: UIView {
         }
     }
     
-    public func positionLeftToRight(constraint:NSLayoutConstraint) {
+    open func positionLeftToRight(_ constraint:NSLayoutConstraint) {
         if self.superview != nil {
-            UIView.animateWithDuration(animationSpeed, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
                 
                 if constraint == self.dot1CenterX {
                     self.dot1CenterX.constant = -self.minDot - self.margin
@@ -560,12 +560,18 @@ public class JHSpinnerView: UIView {
 }
 
 extension UIColor {
+    var coreImageColor: CIColor {
+        return CIColor(color: self)
+    }
+    var components: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        let color = coreImageColor
+        return (color.red, color.green, color.blue, color.alpha)
+    }
     func isLight() -> Bool
     {
-        let components = CGColorGetComponents(self.CGColor)
-        let comp0 = components[0] * 299
-        let comp1 = components[1] * 587
-        let comp2 = components[2] * 114
+        let comp0 = (components.red) * 299
+        let comp1 = (components.green) * 587
+        let comp2 = (components.blue) * 114
         let brightness = (comp0 + comp1 + comp2) / 1000
         
         if brightness < 0.5 {
