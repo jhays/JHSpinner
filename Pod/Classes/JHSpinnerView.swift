@@ -340,220 +340,204 @@ open class JHSpinnerView: UIView {
     
     
     open func animateHeightLeftToRight(_ constraint:NSLayoutConstraint, max:Bool = true) {
-        if self.superview != nil {
-            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
-                
-                if max {
-                    constraint.constant = self.maxDot
-                }else {
-                    constraint.constant = self.minDot
-                }
-                self.layoutIfNeeded()
-                
-                }) { (success) -> Void in
-                    if max {
-                        if constraint == self.dot1Height {
-                            self.animateHeightLeftToRight(self.dot2Height)
-                        }else if constraint == self.dot2Height {
-                            self.animateHeightLeftToRight(self.dot3Height)
-                        }else if constraint == self.dot3Height {
-                            self.animateHeightLeftToRight(self.dot1Height, max:false)
-                        }
-                    }else {
-                        if constraint == self.dot1Height {
-                            self.animateHeightLeftToRight(self.dot2Height, max:false)
-                        }else if constraint == self.dot2Height {
-                            self.animateHeightLeftToRight(self.dot3Height, max:false)
-                        }else if constraint == self.dot3Height {
-                            self.positionTopToBottom(self.dot1CenterX)
-                        }
-                    }
+        UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
+            
+            if max {
+                constraint.constant = self.maxDot
+            }else {
+                constraint.constant = self.minDot
             }
+            self.layoutIfNeeded()
+            
+            }) { (success) -> Void in
+                if max {
+                    if constraint == self.dot1Height {
+                        self.animateHeightLeftToRight(self.dot2Height)
+                    }else if constraint == self.dot2Height {
+                        self.animateHeightLeftToRight(self.dot3Height)
+                    }else if constraint == self.dot3Height {
+                        self.animateHeightLeftToRight(self.dot1Height, max:false)
+                    }
+                }else {
+                    if constraint == self.dot1Height {
+                        self.animateHeightLeftToRight(self.dot2Height, max:false)
+                    }else if constraint == self.dot2Height {
+                        self.animateHeightLeftToRight(self.dot3Height, max:false)
+                    }else if constraint == self.dot3Height {
+                        self.positionTopToBottom(self.dot1CenterX)
+                    }
+                }
         }
     }
     
     open func positionTopToBottom(_ constraint:NSLayoutConstraint) {
-        if self.superview != nil {
-            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
-                
-                if constraint == self.dot1CenterX {
-                    self.dot1CenterX.constant = 0
-                    self.dot1CenterY.constant = -self.minDot - self.margin
-                    self.dot3CenterX.constant = 0
-                    self.dot3CenterY.constant = self.minDot + self.margin
-                }
-                
-                self.layoutIfNeeded()
-                
-                }) { (success) -> Void in
-                    
-                    self.animateWidthTopToBottom(self.dot1Width)
-                    
-                    
+        UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
+            
+            if constraint == self.dot1CenterX {
+                self.dot1CenterX.constant = 0
+                self.dot1CenterY.constant = -self.minDot - self.margin
+                self.dot3CenterX.constant = 0
+                self.dot3CenterY.constant = self.minDot + self.margin
             }
+            
+            self.layoutIfNeeded()
+            
+            }) { (success) -> Void in
+                
+                self.animateWidthTopToBottom(self.dot1Width)
+                
+                
         }
     }
     
     open func animateWidthTopToBottom(_ constraint:NSLayoutConstraint, max:Bool = true) {
-        if self.superview != nil {
-            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
-                
-                if max {
-                    constraint.constant = self.maxDot
-                }else {
-                    constraint.constant = self.minDot
-                }
-                self.layoutIfNeeded()
-                
-                }) { (success) -> Void in
-                    if max {
-                        if constraint == self.dot1Width {
-                            self.animateWidthTopToBottom(self.dot2Width)
-                        }else if constraint == self.dot2Width {
-                            self.animateWidthTopToBottom(self.dot3Width)
-                        }else if constraint == self.dot3Width {
-                            self.animateWidthTopToBottom(self.dot1Width, max:false)
-                        }
-                    }else {
-                        if constraint == self.dot1Width {
-                            self.animateWidthTopToBottom(self.dot2Width, max:false)
-                        }else if constraint == self.dot2Width {
-                            self.animateWidthTopToBottom(self.dot3Width, max:false)
-                        }else if constraint == self.dot3Width {
-                            self.positionRightToLeft(self.dot1CenterX)
-                        }
-                    }
+        UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
+            
+            if max {
+                constraint.constant = self.maxDot
+            }else {
+                constraint.constant = self.minDot
             }
+            self.layoutIfNeeded()
+            
+            }) { (success) -> Void in
+                if max {
+                    if constraint == self.dot1Width {
+                        self.animateWidthTopToBottom(self.dot2Width)
+                    }else if constraint == self.dot2Width {
+                        self.animateWidthTopToBottom(self.dot3Width)
+                    }else if constraint == self.dot3Width {
+                        self.animateWidthTopToBottom(self.dot1Width, max:false)
+                    }
+                }else {
+                    if constraint == self.dot1Width {
+                        self.animateWidthTopToBottom(self.dot2Width, max:false)
+                    }else if constraint == self.dot2Width {
+                        self.animateWidthTopToBottom(self.dot3Width, max:false)
+                    }else if constraint == self.dot3Width {
+                        self.positionRightToLeft(self.dot1CenterX)
+                    }
+                }
         }
     }
     
     open func positionRightToLeft(_ constraint:NSLayoutConstraint) {
-        if self.superview != nil {
-            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
-                
-                if constraint == self.dot1CenterX {
-                    self.dot1CenterX.constant = self.minDot + self.margin
-                    self.dot1CenterY.constant = 0
-                    self.dot3CenterX.constant = -self.minDot - self.margin
-                    self.dot3CenterY.constant = 0
-                }
-                
-                self.layoutIfNeeded()
-                
-                }) { (success) -> Void in
-                    
-                    
-                    self.animateHeightRightToLeft(self.dot1Height)
-                    
+        UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
+            
+            if constraint == self.dot1CenterX {
+                self.dot1CenterX.constant = self.minDot + self.margin
+                self.dot1CenterY.constant = 0
+                self.dot3CenterX.constant = -self.minDot - self.margin
+                self.dot3CenterY.constant = 0
             }
+            
+            self.layoutIfNeeded()
+            
+            }) { (success) -> Void in
+                
+                
+                self.animateHeightRightToLeft(self.dot1Height)
+                
         }
     }
     
     open func animateHeightRightToLeft(_ constraint:NSLayoutConstraint, max:Bool = true) {
-        if self.superview != nil {
-            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
-                
-                if max {
-                    constraint.constant = self.maxDot
-                }else {
-                    constraint.constant = self.minDot
-                }
-                self.layoutIfNeeded()
-                
-                }) { (success) -> Void in
-                    if max {
-                        if constraint == self.dot1Height {
-                            self.animateHeightRightToLeft(self.dot2Height)
-                        }else if constraint == self.dot2Height {
-                            self.animateHeightRightToLeft(self.dot3Height)
-                        }else if constraint == self.dot3Height {
-                            self.animateHeightRightToLeft(self.dot1Height, max:false)
-                        }
-                    }else {
-                        if constraint == self.dot1Height {
-                            self.animateHeightRightToLeft(self.dot2Height, max:false)
-                        }else if constraint == self.dot2Height {
-                            self.animateHeightRightToLeft(self.dot3Height, max:false)
-                        }else if constraint == self.dot3Height {
-                            self.positionBottomToTop(self.dot1CenterX)
-                        }
-                    }
+        UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
+            
+            if max {
+                constraint.constant = self.maxDot
+            }else {
+                constraint.constant = self.minDot
             }
+            self.layoutIfNeeded()
+            
+            }) { (success) -> Void in
+                if max {
+                    if constraint == self.dot1Height {
+                        self.animateHeightRightToLeft(self.dot2Height)
+                    }else if constraint == self.dot2Height {
+                        self.animateHeightRightToLeft(self.dot3Height)
+                    }else if constraint == self.dot3Height {
+                        self.animateHeightRightToLeft(self.dot1Height, max:false)
+                    }
+                }else {
+                    if constraint == self.dot1Height {
+                        self.animateHeightRightToLeft(self.dot2Height, max:false)
+                    }else if constraint == self.dot2Height {
+                        self.animateHeightRightToLeft(self.dot3Height, max:false)
+                    }else if constraint == self.dot3Height {
+                        self.positionBottomToTop(self.dot1CenterX)
+                    }
+                }
         }
     }
     
     open func positionBottomToTop(_ constraint:NSLayoutConstraint) {
-        if self.superview != nil {
-            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
-                
-                if constraint == self.dot1CenterX {
-                    self.dot1CenterX.constant = 0
-                    self.dot1CenterY.constant = self.minDot + self.margin
-                    self.dot3CenterY.constant = -self.minDot - self.margin
-                    self.dot3CenterX.constant = 0
-                }
-                
-                self.layoutIfNeeded()
-                
-                }) { (success) -> Void in
-                    
-                    self.animateWidthBottomToTop(self.dot1Width)
-                    
+        UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
+            
+            if constraint == self.dot1CenterX {
+                self.dot1CenterX.constant = 0
+                self.dot1CenterY.constant = self.minDot + self.margin
+                self.dot3CenterY.constant = -self.minDot - self.margin
+                self.dot3CenterX.constant = 0
             }
+            
+            self.layoutIfNeeded()
+            
+            }) { (success) -> Void in
+                
+                self.animateWidthBottomToTop(self.dot1Width)
+                
         }
     }
     
     open func animateWidthBottomToTop(_ constraint:NSLayoutConstraint, max:Bool = true) {
-        if self.superview != nil {
-            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
-                
-                if max {
-                    constraint.constant = self.maxDot
-                }else {
-                    constraint.constant = self.minDot
-                }
-                self.layoutIfNeeded()
-                
-                }) { (success) -> Void in
-                    if max {
-                        if constraint == self.dot1Width {
-                            self.animateWidthBottomToTop(self.dot2Width)
-                        }else if constraint == self.dot2Width {
-                            self.animateWidthBottomToTop(self.dot3Width)
-                        }else if constraint == self.dot3Width {
-                            self.animateWidthBottomToTop(self.dot1Width, max:false)
-                        }
-                    }else {
-                        if constraint == self.dot1Width {
-                            self.animateWidthBottomToTop(self.dot2Width, max:false)
-                        }else if constraint == self.dot2Width {
-                            self.animateWidthBottomToTop(self.dot3Width, max:false)
-                        }else if constraint == self.dot3Width {
-                            self.positionLeftToRight(self.dot1CenterX)
-                        }
-                    }
+        UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
+            
+            if max {
+                constraint.constant = self.maxDot
+            }else {
+                constraint.constant = self.minDot
             }
+            self.layoutIfNeeded()
+            
+            }) { (success) -> Void in
+                if max {
+                    if constraint == self.dot1Width {
+                        self.animateWidthBottomToTop(self.dot2Width)
+                    }else if constraint == self.dot2Width {
+                        self.animateWidthBottomToTop(self.dot3Width)
+                    }else if constraint == self.dot3Width {
+                        self.animateWidthBottomToTop(self.dot1Width, max:false)
+                    }
+                }else {
+                    if constraint == self.dot1Width {
+                        self.animateWidthBottomToTop(self.dot2Width, max:false)
+                    }else if constraint == self.dot2Width {
+                        self.animateWidthBottomToTop(self.dot3Width, max:false)
+                    }else if constraint == self.dot3Width {
+                        self.positionLeftToRight(self.dot1CenterX)
+                    }
+                }
         }
     }
     
     open func positionLeftToRight(_ constraint:NSLayoutConstraint) {
-        if self.superview != nil {
-            UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
-                
-                if constraint == self.dot1CenterX {
-                    self.dot1CenterX.constant = -self.minDot - self.margin
-                    self.dot1CenterY.constant = 0
-                    self.dot3CenterX.constant = self.minDot + self.margin
-                    self.dot3CenterY.constant = 0
-                }
-                
-                self.layoutIfNeeded()
-                
-                }) { (success) -> Void in
-                    
-                    
-                    self.animateHeightLeftToRight(self.dot1Height)
+        UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
+            
+            if constraint == self.dot1CenterX {
+                self.dot1CenterX.constant = -self.minDot - self.margin
+                self.dot1CenterY.constant = 0
+                self.dot3CenterX.constant = self.minDot + self.margin
+                self.dot3CenterY.constant = 0
             }
+            
+            self.layoutIfNeeded()
+            
+            }) { (success) -> Void in
+                
+                
+                self.animateHeightLeftToRight(self.dot1Height)
         }
     }
     
