@@ -49,6 +49,8 @@ open class JHSpinnerView: UIView {
         }
     }
     
+    fileprivate var shouldStopAnimation = true
+    
     open class func showOnView(_ view:UIView, spinnerColor:UIColor? = nil, overlay:JHSpinnerOverlay = .fullScreen, overlayColor:UIColor? = nil, fullCycleTime:Double = 4.0, text:String? = nil, textColor:UIColor? = nil) -> JHSpinnerView {
         
         let defaultWhite = UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 250.0/255.0, alpha: 1.0)
@@ -325,6 +327,7 @@ open class JHSpinnerView: UIView {
     }
     
     open func dismiss() {
+        shouldStopAnimation = true
         UIView.animate(withDuration: self.animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
             self.alpha = 0.0
             }) { (success) -> Void in
@@ -333,13 +336,20 @@ open class JHSpinnerView: UIView {
     }
     
     open func animate() {
+        
         if dot1Height != nil {
+            shouldStopAnimation = false
             animateHeightLeftToRight(dot1Height)
         }
     }
     
     
     open func animateHeightLeftToRight(_ constraint:NSLayoutConstraint, max:Bool = true) {
+        
+        if shouldStopAnimation {
+            return
+        }
+        
         UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
             
             if max {
@@ -371,6 +381,11 @@ open class JHSpinnerView: UIView {
     }
     
     open func positionTopToBottom(_ constraint:NSLayoutConstraint) {
+        
+        if shouldStopAnimation {
+            return
+        }
+        
         UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
             
             if constraint == self.dot1CenterX {
@@ -391,6 +406,11 @@ open class JHSpinnerView: UIView {
     }
     
     open func animateWidthTopToBottom(_ constraint:NSLayoutConstraint, max:Bool = true) {
+        
+        if shouldStopAnimation {
+            return
+        }
+        
         UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
             
             if max {
@@ -422,6 +442,11 @@ open class JHSpinnerView: UIView {
     }
     
     open func positionRightToLeft(_ constraint:NSLayoutConstraint) {
+        
+        if shouldStopAnimation {
+            return
+        }
+        
         UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
             
             if constraint == self.dot1CenterX {
@@ -442,6 +467,11 @@ open class JHSpinnerView: UIView {
     }
     
     open func animateHeightRightToLeft(_ constraint:NSLayoutConstraint, max:Bool = true) {
+        
+        if shouldStopAnimation {
+            return
+        }
+        
         UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
             
             if max {
@@ -473,6 +503,11 @@ open class JHSpinnerView: UIView {
     }
     
     open func positionBottomToTop(_ constraint:NSLayoutConstraint) {
+        
+        if shouldStopAnimation {
+            return
+        }
+        
         UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
             
             if constraint == self.dot1CenterX {
@@ -492,6 +527,11 @@ open class JHSpinnerView: UIView {
     }
     
     open func animateWidthBottomToTop(_ constraint:NSLayoutConstraint, max:Bool = true) {
+        
+        if shouldStopAnimation {
+            return
+        }
+        
         UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
             
             if max {
@@ -523,6 +563,11 @@ open class JHSpinnerView: UIView {
     }
     
     open func positionLeftToRight(_ constraint:NSLayoutConstraint) {
+        
+        if shouldStopAnimation {
+            return
+        }
+        
         UIView.animate(withDuration: animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
             
             if constraint == self.dot1CenterX {
