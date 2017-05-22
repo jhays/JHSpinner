@@ -26,16 +26,42 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let spinner = JHSpinnerView.showOnView(view, spinnerColor:UIColor.red, overlay:.roundedSquare, overlayColor:UIColor.black.withAlphaComponent(0.6), fullCycleTime:4.0, text:"Loading")
+      let spinner = JHSpinnerView.showOnView(view, spinnerColor:UIColor.red, overlay:.roundedSquare, overlayColor:UIColor.black.withAlphaComponent(0.6), fullCycleTime:2.55, text:nil)
 
-        //let spinner = JHSpinnerView.showDeterminiteSpinnerOnView(view)
-        
-        delay(6) { () -> () in
-            spinner.dismiss()
-        }
+      delay(6) { () -> () in
+        spinner.dismiss()
+      }
+      
+      //show sample determinite 
+//      showSampleDeterminiteSpinner()
+    }
+  
+  func showSampleDeterminiteSpinner() {
+    let spinner = JHSpinnerView.showDeterminiteSpinnerOnView(view, spinnerColor: .white, backgroundColor: .black, fullCycleTime: 2.55, initialProgress: 0.0)
+    
+    delay(1) { () -> () in
+      spinner.progress = 0.1
+    }
+    delay(2) { () -> () in
+      spinner.progress = 0.3
+    }
+    delay(3) { () -> () in
+      spinner.progress = 0.5
+    }
+    delay(4) { () -> () in
+      spinner.progress = 0.7
+    }
+    delay(5) { () -> () in
+      spinner.progress = 0.9
     }
     
     
+    delay(6) { () -> () in
+      spinner.dismiss()
+    }
+
+  }
+  
     func delay(_ delay:Double, closure:@escaping ()->()) {
         DispatchQueue.main.asyncAfter(
             deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)

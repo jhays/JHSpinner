@@ -1,5 +1,5 @@
 PODS:
-  - JHSpinner (0.1.1)
+  - JHSpinner (0.1.3)
 
 DEPENDENCIES:
   - JHSpinner (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  JHSpinner: 0a5986d398cfbf7e499d405e74c3348056d51f86
+  JHSpinner: c066311c964f8fbce023c6d229e38c558a8bbf42
 
 PODFILE CHECKSUM: 93bc2cd7921b370314b8e768388c6ac92023f4f9
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1
