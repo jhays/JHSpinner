@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "JHSpinner"
-  s.version          = "0.2.0"
+  s.version          = "0.2.1"
   s.summary          = "A unique animated loading spinner / activity indicator for iOS"
   s.description      = <<-DESC
   A unique animated loading spinner / activity indicator UIView subclass for iOS. Includes several customization options to change the overlay, colors, text, and animation speed. Also includes a determinate spinner for progress-bar style loading or file upload.
