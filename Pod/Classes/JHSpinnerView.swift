@@ -423,13 +423,11 @@ private class JHSpinner : UIView {
   }
   
   func animate() {
-    NSLog("animate \(animationCounter)")
     animateOpenVertical()
   }
   
   private func animateOpenVertical() {
     animationCounter += 1
-    NSLog("animateOpenVertical \(animationCounter)")
     UIView.animate(withDuration: self.animationTime, animations: {
       var f = self.line1.frame
       f.size.height = self.lineMax
@@ -460,7 +458,6 @@ private class JHSpinner : UIView {
   
   private func animateClosedVertical() {
     animationCounter += 1
-    NSLog("animateClosedVertical \(animationCounter)")
     UIView.animate(withDuration: self.animationTime, animations: {
       var f = self.line1.frame
       f.size.height = self.lineHeight
@@ -495,7 +492,6 @@ private class JHSpinner : UIView {
   
   private func animateVertical() {
     animationCounter += 1
-    NSLog("animateVertical \(animationCounter)")
     UIView.animate(withDuration: self.animationTime, animations: {
       var f1 = self.line1.frame
       var f3 = self.line3.frame
@@ -514,7 +510,6 @@ private class JHSpinner : UIView {
   
   private func animateOpenHorizontal() {
     animationCounter += 1
-    NSLog("animateOpenHorizontal \(animationCounter)")
     UIView.animate(withDuration: self.animationTime, animations: {
       var f = self.line1.frame
       f.size.width = self.lineMax
@@ -543,7 +538,6 @@ private class JHSpinner : UIView {
   
   private func animateClosedHorizontal() {
     animationCounter += 1
-    NSLog("animateClosedHorizontal \(animationCounter)")
     UIView.animate(withDuration: self.animationTime, animations: {
       var f = self.line1.frame
       f.size.width = self.lineWidth
@@ -576,7 +570,6 @@ private class JHSpinner : UIView {
   
   private func animateHorizontalReverse() {
     animationCounter += 1
-    NSLog("animateHorizontalReverse \(animationCounter)")
     UIView.animate(withDuration: self.animationTime, animations: {
       var f1 = self.line1.frame
       var f3 = self.line3.frame
@@ -595,7 +588,6 @@ private class JHSpinner : UIView {
   
   private func animateVerticalReverse() {
     animationCounter += 1
-    NSLog("animateVerticalReverse \(animationCounter)")
     UIView.animate(withDuration: self.animationTime, animations: {
       var f1 = self.line1.frame
       var f3 = self.line3.frame
@@ -614,7 +606,6 @@ private class JHSpinner : UIView {
   
   private func animateHorizontal() {
     animationCounter += 1
-    NSLog("animateHorizontal \(animationCounter)")
     UIView.animate(withDuration: self.animationTime, animations: {
       var f1 = self.line1.frame
       var f3 = self.line3.frame
