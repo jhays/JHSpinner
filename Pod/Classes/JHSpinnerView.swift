@@ -113,7 +113,7 @@ open class JHSpinnerView: UIView {
                 }
             }
             spinnerView.spinner.messageLabel.isHidden = false
-            spinnerView.spinner.bringSubview(toFront: spinnerView.spinner.messageLabel)
+            spinnerView.spinner.bringSubviewToFront(spinnerView.spinner.messageLabel)
             spinnerView.spinner.layoutIfNeeded()
         }
         
@@ -168,7 +168,7 @@ open class JHSpinnerView: UIView {
       spinnerView.spinner.messageLabel.attributedText = attributedText
         
       spinnerView.spinner.messageLabel.isHidden = false
-      spinnerView.spinner.bringSubview(toFront: spinnerView.spinner.messageLabel)
+      spinnerView.spinner.bringSubviewToFront(spinnerView.spinner.messageLabel)
       spinnerView.spinner.layoutIfNeeded()
       
       spinnerView.animate()
@@ -225,7 +225,7 @@ open class JHSpinnerView: UIView {
       
       
       spinnerView.spinner.messageLabel.isHidden = true
-      spinnerView.spinner.bringSubview(toFront: spinnerView.spinner.messageLabel)
+      spinnerView.spinner.bringSubviewToFront(spinnerView.spinner.messageLabel)
       spinnerView.spinner.layoutIfNeeded()
       
       spinnerView.animate()
@@ -284,10 +284,10 @@ open class JHSpinnerView: UIView {
     
     open func dismiss() {
         spinner.shouldStopAnimation = true
-        UIView.animate(withDuration: self.animationSpeed, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
+        UIView.animate(withDuration: self.animationSpeed, delay: 0.0, options: UIView.AnimationOptions(), animations: { () -> Void in
             self.alpha = 0.0
-            }) { (success) -> Void in
-                self.removeFromSuperview()
+        }) { (success) -> Void in
+            self.removeFromSuperview()
         }
     }
     
@@ -380,7 +380,7 @@ private class JHSpinner : UIView {
     line3.layer.cornerRadius = lineWidth/2.0
     containerView.addSubview(line3)
     
-    bringSubview(toFront: containerView)
+    bringSubviewToFront(containerView)
    
     overlayView.addSubview(messageLabel)
     
